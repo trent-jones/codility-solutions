@@ -32,19 +32,19 @@ class Solution {
         
         for (int i = 0; i < binaryNum.length(); ++i) {
   
-            if ('1' == binaryNum.charAt(i)) {
+            char currentChar = binaryNum.charAt(i);
+        
+            if (currentChar == '1') {
                 
-                if(gapStarted) {
-                    binaryGap = binaryGap >= zeroCounter ? binaryGap : zeroCounter;
-                    gapStarted = false;
-                } else {
-                    gapStarted = true;
+                if (gapStarted) {
+                    binaryGap = binaryGap > zeroCounter ? binaryGap : zeroCounter;
                 }
                 
+                gapStarted = true;
                 zeroCounter = 0;
-            
-            } else if ('0' == binaryNum.charAt(i) && gapStarted) {
-                zeroCounter++;                
+                
+            } else if (currentChar == '0' && gapStarted) {
+                zeroCounter++;
             }
         }
         
