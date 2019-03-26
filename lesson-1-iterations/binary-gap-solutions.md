@@ -52,3 +52,63 @@ class Solution {
     }
 }
 ```
+
+## Python Solution
+
+```python
+def solution(N):
+    
+    gapStarted = False
+    binaryGap = 0
+    zeroCounter = 0
+    
+    for char in bin(N)[2:]:
+        
+        if char == '1':
+            
+            if gapStarted:
+                binaryGap = binaryGap if binaryGap > zeroCounter else zeroCounter  
+            
+            gapStarted = True
+            zeroCounter = 0
+            
+        elif char == '0' and gapStarted:
+            zeroCounter += 1
+            
+    return binaryGap
+    
+```
+
+## Go Solution
+
+```go
+import "strconv"
+
+func Solution(N int) int {
+
+    gapStarted := false
+    binaryGap := 0
+    zeroCounter := 0
+
+    for _, char := range strconv.FormatInt(int64(N), 2) {
+
+        if char == '1' {
+            
+            if gapStarted {
+                
+                if binaryGap < zeroCounter {
+                    binaryGap = zeroCounter
+                }
+            }
+            
+            zeroCounter = 0
+            gapStarted = true
+            
+        } else if char == '0' && gapStarted {
+            zeroCounter++
+        }
+    }
+        
+    return binaryGap
+}
+```
